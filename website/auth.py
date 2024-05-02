@@ -6,7 +6,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 
-
 auth = Blueprint('auth', __name__)
 
 @auth.route("/login", methods=['GET', 'POST'])
@@ -58,8 +57,8 @@ def sign_up():
             db.session.add(new_user)
             db.session.commit()
             flash('Account has been created', category='sucess')
+            login_user(new_user, remember=True)
             return redirect(url_for('auth.login'))
-
 
     return render_template('signup.html', user=current_user)
 
