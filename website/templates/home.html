@@ -1,17 +1,14 @@
 {%extends "base.html" %}{% block title %}Home{% endblock %}
 {%block content %}
-<h1 align="center">Notes</h1>
-<form method="POST">
-    <div align="center">
-        <textarea name="note" id="note" rows="4" cols="80"></textarea>
-        <br />
-        <button type="sumbit" class="btn btn-primary">Add Note</button>
-    </div>
-</form>
-<ul class="list-group list-group-flush" id="notes">
-    {%for note in user.notes %}
-    <li class="list-group-item">{{note.data}}
-        <button type="button" class="close" onClick="deleteNote('{{note.id}}')">
+<h1 align="center">Accounts</h1>
+<div align="right">
+   <a href="/add-account" class="btn btn-primary">Add Account</a>
+</div>
+
+<ul class="list-group list-group-flush" id="accounts">
+    {%for account in user.accounts %}
+    <li class="list-group-item">{{account.name}}
+        <button type="button" class="close" onClick="deleteAccount('{{account.phone}}')">
             <span aria-hidden="true">&times;</span>
         </button>
     </li>

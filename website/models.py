@@ -7,11 +7,11 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     first_name = db.Column(db.String(150))
-    notes = db.relationship('Note')
+    accounts = db.relationship('Account')
 
-class Note(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    data = db.Column(db.String(10000))
-    date = db.Column(db.DateTime(timezone=True), default=func.now())
+class Account(db.Model):
+    phone = db.Column(db.String, primary_key=True)
+    name = db.Column(db.String(150))
+    address = db.Column(db.String(250))
+    notes = db.Column(db.String(100000))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-

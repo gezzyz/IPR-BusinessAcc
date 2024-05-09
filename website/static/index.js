@@ -1,7 +1,7 @@
-function deleteNote(noteId){
-    fetch('/delete-node',{
+function deleteAccount(phoneNumb){
+    fetch('/delete-acc',{
         method: 'POST',
-        body: JSON.stringify({noteId:noteId})
+        body: JSON.stringify({phoneNumb:phoneNumb})
     }).then((_res) => {
         window.location.href="/";
     });
