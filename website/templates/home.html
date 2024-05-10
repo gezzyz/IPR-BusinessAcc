@@ -1,13 +1,14 @@
 {%extends "base.html" %}{% block title %}Home{% endblock %}
 {%block content %}
 <h1 align="center">Accounts</h1>
-<div align="right">
+<div align="right" style="margin: 10px; padding: 10px; border: 1px">
    <a href="/add-account" class="btn btn-primary">Add Account</a>
 </div>
 
 <ul class="list-group list-group-flush" id="accounts">
     {%for account in user.accounts %}
-    <li class="list-group-item">{{account.name}}
+    <li class="list-group-item" style="margin: 10px; padding: 10px; border: 1px solid rgb(181, 181, 181); border-radius: 5px;">
+        <a href="/add-account">{{ account.name }}</a>
         <button type="button" class="close" onClick="deleteAccount('{{account.phone}}')">
             <span aria-hidden="true">&times;</span>
         </button>

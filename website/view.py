@@ -1,5 +1,6 @@
 #Pages the user can navigate to
 
+from sqlite3 import IntegrityError
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
 from .models import Account
@@ -40,10 +41,15 @@ def add_account():
         else:
             new_acc = Account(phone=phone, name=name, address=address, notes=notes, user_id=current_user.id)
             db.session.add(new_acc)
-            db.session.commit()
-            flash("Account added", category="success")
+            try:
+                db.session.commit() 
+            except:
+                flash("Phone number already in use", category="error")
+                db.session.rollback()
+            else:
+                flash("Account added", category="success")
 
         return render_template("home.html", user=current_user)
-    else:
-        return render_template("add_account.html", user=current_user)
+    
+    return render_template("add_account.html", user=current_user)
 
